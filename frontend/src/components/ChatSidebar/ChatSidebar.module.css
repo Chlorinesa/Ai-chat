@@ -1,0 +1,190 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.siderHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    height: 56px;
+    border-bottom: 1px solid var(--border-color);
+}
+.sider {
+    border-right: 1px solid var(--border-color);
+    box-shadow:  4px 0 12px rgba(0, 0, 0, 0.15);
+}
+
+.logoWrapper {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.logo::before {
+    content: '';
+    display: inline-block;
+    width: 48px;
+    height: 32px;
+    border-radius: 8px;
+    background-image: var(--logo-url);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    flex-shrink: 0;
+}
+
+.createChatBtn {
+    padding: 12px;
+    border-bottom: 1px solid var(--border-color);
+
+}
+.createChatBtn :global(.ant-btn-primary ){
+    border-radius: 20px;
+    transition: all 0.3s;
+    background-color: var(--create-chat-button-bg) !important;
+    border-color: var(--create-chat-button-bg) !important;
+
+}
+
+.createChatBtn :global(.ant-btn-primary):hover {
+    background-color: var(--create-chat-button-hover-bg) !important;
+    border-color: var(--create-chat-button-hover-bg) !important;
+}
+
+.searchContainer {
+    padding: 12px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.chatList {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.chatList::-webkit-scrollbar {
+    width: 8px;
+    background-color: transparent;
+}
+
+.chatList::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.chatList::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 10px;
+    transition: background 0.2s;
+}
+
+.chatList:hover::-webkit-scrollbar-thumb,
+.chatList:active::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+}
+
+.chatList::-webkit-scrollbar-thumb:hover {
+    background: var(--text-secondary);
+}
+
+.chatList {
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+}
+
+.chatList:hover {
+    scrollbar-color: var(--border-color) transparent;
+}
+
+.chatItem {
+    display: flex;
+    align-items: center;
+    padding: 3px 12px;
+    cursor: pointer;
+    border-radius: 16px; 
+    transition: background-color 0.2s; 
+    margin: 4px 8px;
+    width: calc(100% - 16px);
+}
+
+.chatItem:hover {
+    background-color: var(--bg-secondary);
+}
+
+.chatItem:hover .chatTitle {
+    margin-right: 0;
+    max-width: calc(100% - 12px);
+}
+.active {
+    background-color: var(--active-chat-bg);
+}
+
+.chatIcon {
+    margin-right: 12px;
+    font-size: 18px;
+}
+
+.chatTitle {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    transition: margin-right 0.2s;
+    font-size: 14px;
+    padding: 4px 0;  
+}
+
+.deleteBtn {
+    opacity: 0;
+    position: absolute;
+    right: 16px;
+    background-color: var(--active-chat-bg);
+    padding: 4px;
+    border-radius: 8px;
+    transition: opacity 0.2s;
+    color: #ff4d4f !important;
+}
+
+.chatItem:hover .deleteBtn {
+    opacity: 1;
+}
+
+.userPanel {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    border-top: 1px solid var(--border-color);
+}
+
+.username {
+    flex: 1;
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--text-color);
+}
+
+.userActions {
+    display: flex;
+    gap: 4px;
+}
+
+.empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-size: 16px;
+    color: var(--text-secondary);
+}

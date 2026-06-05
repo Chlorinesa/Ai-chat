@@ -1,0 +1,39 @@
+.empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-size: 16px;
+    color: var(--text-secondary);
+}
+
+.welcomeContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    gap: 24px;
+    padding: 24px;
+}
+
+.welcomeMessage {
+    text-align: center;
+}
+
+.welcomeMessage h2 {
+    font-size: 24px;
+    margin-bottom: 12px;
+    color: var(--text-color);
+}
+
+.welcomeMessage p {
+    font-size: 16px;
+    color: var(--text-secondary);
+}
+
+.inputWrapper {
+    max-width: 900px;  
+    width: 100%;
+    padding: 0 20px;
+}

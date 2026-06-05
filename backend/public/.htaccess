@@ -1,0 +1,15 @@
+# отключаем буферизацию для SSE
+<IfModule mod_headers.c>
+    Header set Cache-Control "no-cache"
+</IfModule>
+
+# для PHP-скриптов отключаем output buffering
+<IfModule mod_php.c>
+    php_flag output_buffering Off
+    php_flag zlib.output_compression Off
+</IfModule>
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [QSA,L]

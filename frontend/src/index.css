@@ -1,0 +1,111 @@
+:root {
+    --bg-color: #dedcdc;
+    --bg-secondary: #f5f5f5;
+    --bg-siderbar: #c7c3c3;
+    --text-color: #000000;
+    --text-secondary: #666666;
+    /* --border-color: #989393; */
+    --border-color: #98939300;
+    --user-message-bg: #72645eb0;
+    --assistant-message-bg: #f0f0f0;
+    --active-chat-bg: #ffffff; 
+    --create-chat-button-bg: #666666;
+    --create-chat-button-hover-bg: #72645e;
+    --primary-button-bg:#666666;
+    --primary-button-hover-bg: #72645e;
+    --button-text-color: #ffffff;
+    --box-shadow-color:#bdbdbd;
+}
+
+body.dark {
+    --bg-color: #272727;
+    --bg-secondary: #383838;
+    --bg-siderbar: #1f1f1f;
+    --text-color: #f0f0f0;
+    --text-secondary: #b0b0b0;
+    /* --border-color: #404040; */
+    --border-color: #98939300;
+    --user-message-bg: #231e4e8f;
+    --assistant-message-bg: #3a3a3aab;
+    --active-chat-bg: #5b5b5c;
+    --create-chat-button-bg: #231e4e;
+    --create-chat-button-hover-bg: #4a1cae;
+    --primary-button-bg:#231e4e;
+    --primary-button-hover-bg: #4a1cae;
+    --button-text-color: #f0f0f0;
+    --box-shadow-color:#2d2d2d;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.ant-layout-sider{
+    background-color: var(--bg-siderbar) !important;
+}
+.ant-layout-content,
+.ant-layout-header {
+    background-color: var(--bg-color) !important;
+}
+
+.ant-typography {
+    margin-top: 0em !important;
+    margin-bottom: 0em !important;
+} 
+
+.ant-typography,
+.ant-input,
+.ant-input-affix-wrapper {
+    color: var(--text-color) !important;
+    background-color: var(--bg-secondary) !important;
+    border-color: var(--border-color) !important;
+}
+.ant-input:hover,
+.ant-input-affix-wrapper:hover {
+    border-color: var(--primary-button-hover-bg) !important;
+}
+
+.ant-input::placeholder {
+    color: var(--text-secondary) !important;
+}
+
+.ant-btn-text {
+    color: var(--text-color) !important;
+}
+
+.ant-typography {
+    background-color: transparent !important;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 10px;
+    background-clip: padding-box;
+    border: 2px solid transparent;  
+    min-height: 40px;
+}
+::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+.ant-popconfirm-buttons .ant-btn-primary {
+    background-color: var(--primary-button-bg) !important;
+    border-color: var(--primary-button-bg) !important;
+    color: var(--button-text-color) !important;
+}
+
+.ant-popconfirm-buttons .ant-btn-primary:hover {
+    background-color: var(--primary-button-hover-bg) !important;
+    border-color: var(--primary-button-hover-bg) !important;
+}
+
+.ant-popconfirm-buttons .ant-btn-default:hover {
+    border-color: var(--primary-button-bg) !important;
+    color: var(--primary-button-bg) !important;
+}

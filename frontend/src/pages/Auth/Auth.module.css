@@ -1,0 +1,61 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url('/src/assets/Auth.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.card {
+    width: 100%;
+    max-width: 400px;
+    margin: 20px;
+    background-color: rgba(var(--bg-color-rgb), 0.85); 
+    border-radius: 24px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+}
+.form {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;   
+}
+
+.form :global(.ant-input),
+.form :global(.ant-input-password) {
+    margin-bottom: 20px;
+    padding: 10px 10px;
+}
+
+.form :global(.ant-btn-primary) {
+    transition: all 0.3s;
+    background-color: var(--create-chat-button-bg) !important;
+    border-color: var(--create-chat-button-bg) !important;
+    height: 40px;
+    border-radius: 12px;
+    width: 50%; 
+}
+
+
+.form :global(.ant-btn-primary):hover {
+    background-color: var(--primary-button-hover-bg);
+    background-color: var(--create-chat-button-hover-bg) !important;
+    border-color: var(--create-chat-button-hover-bg) !important;
+}
+
+
+.footer {
+    margin-top: 16px;
+    text-align: center;
+}
+
+.link {
+    color: var(--primary-button-bg);
+}
+
+.link:hover {
+    color: var(--primary-button-hover-bg);
+}

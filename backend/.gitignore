@@ -1,0 +1,52 @@
+# Локальные файлы окружения 
+.env
+.env.local
+.env.*.local
+
+# Зависимости Composer
+vendor/
+composer.phar
+
+# Логи приложения
+logs/
+*.log
+
+# Кэш и временные файлы
+.cache/
+.cache.php
+*.tmp
+*.temp
+*.cache
+
+# Результаты тестов
+.phpunit.cache/
+.phpunit.result.cache
+coverage/
+*.xml
+
+# Файлы отладки
+*.xdebug
+*.prof
+
+# IDE и редакторы
+.vscode/
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Файлы сборки
+*.tar
+*.gz
+*.zip
+
+# Конфиги с секретами
+config/local.php
+config/secrets.php
+
+# Папка кэша шаблонов
+cache/
+twig-cache/

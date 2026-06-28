@@ -1,84 +1,102 @@
 # AI Chat Application
 
-Веб–приложение для общения с искусственным интеллектом через текстовый чат с использованием локальной модели LM Studio.
+Веб-приложение для общения с искусственным интеллектом через текстовый чат с использованием локальной модели LM Studio. Включает административную панель для управления пользователями и мониторинга статистики.
 
 ## Возможности
 
-– Регистрация и авторизация пользователей (JWT)                                                                         
-– Создание, удаление и переключение между чатами                                                                         
-– Отправка сообщений AI с потоковым ответом (эффект печати)                                                                         
-– Поиск чатов по названию                                                                         
-– Автоматическое переименование чата AI после 4 сообщений                                                                         
-– Копирование текста сообщения в буфер обмена                                                                         
-– Отмена генерации ответа                                                                         
-– Светлая/темная тема интерфейса                                                                         
+### Пользовательская часть
+- Регистрация и авторизация пользователей (JWT)
+- Создание, удаление и переключение между чатами
+- Отправка сообщений AI с потоковым ответом (эффект печати)
+- Поиск чатов по названию с дебаунсом
+- Автоматическое переименование чата AI после 4 сообщений
+- Копирование текста сообщения и блоков кода в буфер обмена
+- Отмена генерации ответа
+- Светлая/тёмная тема интерфейса с сохранением выбора
+- Поддержка Markdown и подсветка синтаксиса в ответах AI
+- Анимация печатания (typing indicator) во время генерации
+
+### Административная панель (только для админов)
+- Управление пользователями:
+  - Просмотр списка всех пользователей с пагинацией (5, 10, 15 записей)
+  - Создание новых пользователей с выбором роли (user/admin)
+  - Редактирование пользователей (имя, роль, пароль)
+  - Удаление пользователей с подтверждением
+  - Отображение статистики по каждому пользователю (количество чатов и сообщений)
+  - Дата регистрации каждого пользователя
+- Статистика и аналитика:
+  - Общая статистика: количество пользователей, чатов, сообщений, сообщений за сегодня
+  - График сообщений по дням (за последние 30 дней)
+  - Топ-5 пользователей по количеству сообщений
+- Переключение темы прямо из админ-панели
 
 ## Технологии
 
-Frontend: React 18, Vite, Ant Design, React Markdown
+**Frontend:** React 18, Vite, Ant Design, React Router v6, React Markdown, remark-gfm, React Syntax Highlighter, Recharts, CSS Modules
 
-Backend: PHP 8, PostgreSQL, JWT, BCrypt
+**Backend:** PHP 8, PostgreSQL, JWT, BCrypt, Firebase JWT
 
-AI: LM Studio
+**AI:** LM Studio (локальная модель)
 
 ## Установка и запуск
 
 ### Предварительные требования
 
-– Node.js 16+ и npm
-– PHP 8.0+
-– PostgreSQL 13+
-– Composer
-– Open Server Panel
-– LM Studio
+- Node.js 16+ и npm
+- PHP 8.0+
+- PostgreSQL 13+
+- Composer
+- Open Server Panel
+- LM Studio
 
 ### 1. Клонирование репозитория
 
-```
-git clone https://github.com/Chlorinesa/Ai–chat.git
-cd Ai–chat
+```bash
+git clone https://github.com/Chlorinesa/Ai-chat.git
+cd Ai-chat
 ```
 
 ### 2. Настройка базы данных
 
 Создайте базу данных в PostgreSQL:
 
-```
+```sql
 CREATE DATABASE chat_db;
 ```
 
 Выполните скрипт создания таблиц:
 
-```
-psql –U postgres –d chat_db –f backend/database/script.sql
+```bash
+psql -U postgres -d chat_db -f backend/database/script.sql
 ```
 
 ### 3. Настройка бэкенда
 
-```
+```bash
 cd backend
 cp .env.example .env
 ```
 
 Отредактируйте файл .env:
 
-```
+```env
 DB_HOST=localhost
+DB_PORT=5432
 DB_NAME=chat_db
 DB_USER=postgres
 DB_PASSWORD=your_password_here
-JWT_SECRET=your–secret–key–change–it
+JWT_SECRET=your-secret-key-change-it
 ```
 
 Установите зависимости:
 
-```
+```bash
 composer install
 ```
 
 ### 4. Настройка фронтенда
 
-```
+```bash
 cd ../frontend
 npm install
 ```
@@ -86,69 +104,126 @@ npm install
 ### 5. Запуск LM Studio
 
 1. Скачайте и установите LM Studio
-2. Загрузите модель (рекомендуется gemma–3)
+2. Загрузите модель (рекомендуется gemma-3)
 3. Запустите локальный сервер на порту 1234
 
 ### 6. Запуск приложения
 
-Бэкенд (Open Server Panel):
-– Запустите Apache и PostgreSQL
-– Настройте домен на папку backend
+**Бэкенд (Open Server Panel):**
+- Запустите Apache и PostgreSQL
+- Настройте домен на папку backend
 
-Фронтенд:
+**Фронтенд:**
 
-```
+```bash
 npm run dev
 ```
 
 Приложение доступно: http://localhost:5173
 
-Сборка для продакшена:
+**Сборка для продакшена:**
 
-```
+```bash
 npm run build
 ```
 
-Файлы из frontend/dist скопируйте в backend/public
+Файлы из `frontend/dist` скопируйте в `backend/public`
 
 ## Настройка подключения к бэкенду
 
-Если бэкенд работает не на http://chat–backend.local, отредактируйте frontend/src/constants/api.js:
+Если бэкенд работает не на http://chat-backend.local, отредактируйте `frontend/src/constants/api.js`:
 
-```
-export const API_BASE_URL = 'http://ваш–домен.local';
+```javascript
+export const API_BASE_URL = 'http://ваш-домен.local';
 ```
 
 ## Структура БД
 
-– users – пользователи (id, username, password_hash, created_at)
-– chats – чаты (id, user_id, title, created_at, updated_at)
-– messages – сообщения (id, chat_id, role, content, created_at)
+- **users** – пользователи (id, username, password_hash, role, created_at)
+- **chats** – чаты (id, user_id, title, created_at, updated_at)
+- **messages** – сообщения (id, chat_id, role, content, created_at)
 
 ## API Endpoints
 
-– POST /auth/register – Регистрация                                                                          
-– POST /auth/login – Авторизация                                                                         
-– GET /chats – Список чатов                                                                         
-– POST /chats – Создание чата                                                                         
-– DELETE /chats/{id} – Удаление чата                                                                         
-– GET /chats/{id}/messages – История сообщений                                                                         
-– POST /chats/{id}/messages/stream – Отправка сообщения (SSE)                                                                         
+### Аутентификация
+- `POST /auth/register` – Регистрация
+- `POST /auth/login` – Авторизация (возвращает token и данные пользователя с ролью)
+
+### Чаты
+- `GET /chats` – Список чатов
+- `GET /chats?q={query}` – Поиск чатов
+- `POST /chats` – Создание чата
+- `DELETE /chats/{id}` – Удаление чата
+
+### Сообщения
+- `GET /chats/{id}/messages` – История сообщений
+- `POST /chats/{id}/messages/stream` – Отправка сообщения (SSE поток)
+
+### Административные (только для роли admin)
+- `GET /admin/users?page={page}&per_page={perPage}` – Список пользователей с пагинацией
+- `POST /admin/users` – Создание пользователя
+- `PATCH /admin/users/{id}` – Обновление пользователя
+- `DELETE /admin/users/{id}` – Удаление пользователя
+- `GET /admin/stats` – Статистика (общая, по дням, топ пользователей)
+
+## Права доступа
+
+| Роль | Доступ |
+|------|--------|
+| **Пользователь (user)** | `/chat` – работа с чатами и AI |
+| **Администратор (admin)** | `/chat` + `/admin/*` – управление пользователями и просмотр статистики |
+
+При входе пользователь автоматически перенаправляется:
+- `admin` → `/admin`
+- `user` → `/chat`
+
+## Особенности реализации
+
+### Потоковая передача (SSE)
+- Используется Server-Sent Events для потоковой передачи ответов AI
+- Клиент получает чанки данных в реальном времени
+- Поддержка отмены генерации через AbortController
+- Эффект печати с настраиваемой скоростью (18 мс на символ)
+
+### Безопасность
+- JWT токены с временем жизни 24 часа
+- Ролевая модель (user/admin)
+- Проверка принадлежности чата пользователю
+- Хеширование паролей через BCrypt
+
+### Автоматическое переименование чатов
+- Если чат называется "Новый чат" и содержит 4+ сообщений
+- AI генерирует новое название на основе истории диалога
+- Название ограничено 1-4 словами
 
 ## Устранение неполадок
 
-Ошибка подключения к БД: проверьте, запущен ли PostgreSQL и правильность данных в .env                                                                         
- Ошибка "AI service unavailable": убедитесь, что LM Studio запущен на порту 1234 и модель загружена                                                                         
- Ошибка 401 Unauthorized: JWT–токен истек, выполните повторный вход                                                                         
+| Проблема | Решение |
+|----------|---------|
+| Ошибка подключения к БД | Проверьте, запущен ли PostgreSQL и правильность данных в .env |
+| Ошибка "AI service unavailable" | Убедитесь, что LM Studio запущен на порту 1234 и модель загружена |
+| Ошибка 401 Unauthorized | JWT-токен истек, выполните повторный вход |
+| Ошибка 403 Forbidden | У пользователя недостаточно прав (попытка доступа к админ-панели без роли admin) |
+| Пустые ответы от AI | Проверьте логи в `backend/logs/prompt.log` для отладки |
+
+## Создание администратора
+
+Для создания администратора выполните SQL-запрос в базе данных:
+
+```sql
+UPDATE users SET role = 'admin' WHERE username = 'ваш_username';
+```
+
+Или при создании пользователя через админ-панель выберите роль "Администратор".
 
 ## Поддерживаемые браузеры
 
-– Google Chrome 70+                                                                         
-– Microsoft Edge 79+                                                                         
-– Safari 14+                                                                         
+- Google Chrome 70+
+- Microsoft Edge 79+
+- Safari 14+
+- Firefox 90+
 
 ## Контакты
 
- Репозиторий: https://github.com/Chlorinesa/Ai–chat                                                                         
- Email: marinasibirkina36639@gmail.com                                                                         
-
+**Репозиторий:** https://github.com/Chlorinesa/Ai-chat
+**Email:** marinasibirkina36639@gmail.com

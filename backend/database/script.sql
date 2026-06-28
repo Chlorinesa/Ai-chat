@@ -27,6 +27,7 @@ CREATE INDEX IF NOT EXISTS idx_messages_created_at ON messages(created_at);
 
 CREATE EXTENSION IF NOT EXISTS pg_trgm;
 CREATE INDEX idx_chats_title_trgm ON chats USING gin (title gin_trgm_ops);
+
 CREATE INDEX idx_chats_updated_at ON chats(updated_at DESC);
 
 CREATE OR REPLACE FUNCTION update_updated_at_column()
@@ -42,3 +43,8 @@ CREATE TRIGGER trigger_chats_updated_at
     BEFORE UPDATE ON chats
     FOR EACH ROW
     EXECUTE FUNCTION update_updated_at_column();
+
+ALTER TABLE users ADD COLUMN role VARCHAR(20) 
+CHECK (role IN ('user', 'admin')) DEFAULT 'user';
+
+UPDATE users SET role = 'admin' WHERE id = 3;

@@ -3,7 +3,7 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-image: url('/src/assets/Auth.jpg'); 
+    background-image: url('/src/assets/Auth.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -13,10 +13,11 @@
     width: 100%;
     max-width: 400px;
     margin: 20px;
-    background-color: rgba(var(--bg-color-rgb), 0.85); 
+    background-color: #d6dfe35e;
+    /*background-color: rgba(var(--bg-color-rgb), 0.85);  85% непрозрачности */
     border-radius: 24px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px); 
 }
 .form {
     display: flex;
@@ -24,11 +25,17 @@
     align-items: center;   
 }
 
-.form :global(.ant-input),
-.form :global(.ant-input-password) {
-    margin-bottom: 20px;
-    padding: 10px 10px;
+.form :global(.ant-input){
+    border-radius: 12px
 }
+.form :global(.ant-input-password) {
+    margin-top: 10px; 
+    margin-bottom: 10px;      
+    height: 40px;                                                                         
+    border-radius: 12px;
+}
+
+
 
 .form :global(.ant-btn-primary) {
     transition: all 0.3s;
@@ -36,7 +43,7 @@
     border-color: var(--create-chat-button-bg) !important;
     height: 40px;
     border-radius: 12px;
-    width: 50%; 
+    width: 50%;
 }
 
 
@@ -50,6 +57,7 @@
 .footer {
     margin-top: 16px;
     text-align: center;
+    color: var(--primary-button-bg);
 }
 
 .link {

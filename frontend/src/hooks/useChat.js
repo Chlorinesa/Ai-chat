@@ -3,8 +3,8 @@ import { apiGetChats, apiCreateChat, apiDeleteChat } from '../api/chats';
 import { apiGetMessages, apiSendMessageStream } from '../api/messages';
 import { message } from 'antd';
 
-const TYPEWRITER_INTERVAL = 100;   
-const TYPEWRITER_CHUNK = 1;      
+const TYPEWRITER_INTERVAL = 18;   // ← ускорили с 25 до 12 мс
+const TYPEWRITER_CHUNK = 1;       // ← 2 символа за тик вместо 1
 
 export const useChat = () => {
 
@@ -427,21 +427,30 @@ export const useChat = () => {
     const displayMessages = useMemo(() => {
         const result = [...messages];
         const lastDbMessage = messages[messages.length - 1];
-
+    
         const isDuplicate = pendingUserMessage &&
             lastDbMessage?.role === 'user' &&
             lastDbMessage?.content === pendingUserMessage.content;
-
+    
         if (pendingUserMessage && !isDuplicate) {
             result.push(pendingUserMessage);
         }
-
+    
         if (streamingAssistant) {
             result.push(streamingAssistant);
         }
-
+    
+        // Добавляем флаг для последнего сообщения
+        if (result.length > 0) {
+            const lastMessage = result[result.length - 1];
+            if (lastMessage?.role === 'assistant' && streamingAssistant) {
+                lastMessage.isLastStreaming = true;
+            }
+        }
+    
         return result;
     }, [messages, pendingUserMessage, streamingAssistant]);
+    
 
     return {
         chats, activeChatId, messages: displayMessages,

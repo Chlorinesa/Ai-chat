@@ -46,7 +46,15 @@ class AuthService
             throw new Exception('Invalid credentials', 401);
         }
 
-        return $this->jwtService->encode($user['id'], $user['username']);
+        $token = $this->jwtService->encode($user['id'], $user['username'], $user['role']);
+
+        return [
+            'token' => $token,
+            'user' => [
+                'id' => $user['id'],
+                'username' => $user['username'],
+                'role' => $user['role']
+            ]
+        ];
     }
 }
-

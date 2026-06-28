@@ -13,6 +13,7 @@ export default function Register() {
     const { register, loading } = useAuth();
 
     const handleSubmit = async (event) => {
+        
         event.preventDefault();
         try {
             await register(username, password);
@@ -27,14 +28,23 @@ export default function Register() {
         <div className={styles.container}>
             <Card className={styles.card}>
                 <form onSubmit={handleSubmit} className={styles.form}>
+                    <span
+                        style={{marginBottom:10, color: '#3f3f3f'}}
+                    >
+                        Вход в систему
+                    </span>
                     <Input 
                         placeholder="Имя пользователя"
                         value={username}
+                        style={{height:40}}
                         onChange={(e) => setUsername(e.target.value)}
                     />
                     <Input.Password
                         placeholder="Пароль"
                         value={password}
+                        spellCheck={false}
+                        autoCapitalize="on"
+                        autoCorrect="off"
                         onChange={(e) => setPassword(e.target.value)}
                     />
                     <Button type="primary" htmlType="submit" loading={loading}>

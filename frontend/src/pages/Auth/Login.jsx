@@ -19,7 +19,14 @@ export default function Login() {
             const response = await login(username, password);
             if (response?.token) {
                 message.success('Добро пожаловать!');
-                navigate('/chat');
+                
+                // Редирект в зависимости от роли
+                const userRole = response.user?.role;
+                if (userRole === 'admin') {
+                    navigate('/admin');
+                } else {
+                    navigate('/chat');
+                }
             }
         } catch (error) {
             message.error(error.error || 'Ошибка входа');
@@ -30,14 +37,24 @@ export default function Login() {
         <div className={styles.container}>
             <Card className={styles.card}>
                 <form onSubmit={handleSubmit} className={styles.form}>
+                    
+                    <span
+                        style={{marginBottom:10, color: '#3f3f3f'}}
+                    >
+                        Вход в систему
+                    </span>
                     <Input 
                         placeholder="Имя пользователя"
                         value={username}
+                        style={{height:40}}
                         onChange={(e) => setUsername(e.target.value)}
                     />
                     <Input.Password
                         placeholder="Пароль"
                         value={password}
+                        spellCheck={false}
+                        autoCapitalize="on"
+                        autoCorrect="off"
                         onChange={(e) => setPassword(e.target.value)}
                     />
                     <Button type="primary" htmlType="submit" loading={loading}>

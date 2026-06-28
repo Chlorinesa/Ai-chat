@@ -1,0 +1,446 @@
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    flex-shrink: 0;
+}
+
+.headerLeft {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+}
+
+.title {
+    margin: 0;
+    color: var(--text-color);
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+.headerRight {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.content {
+    flex: 1;
+    overflow: hidden;
+    padding: 16px 24px;
+}
+
+
+.tabs {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.tabContent {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    height: 100%;
+}
+
+.toolbar {
+    display: flex;
+    justify-content: flex-end;
+    flex-shrink: 0;
+}
+
+.createBtn {
+    background-color: var(--create-chat-button-bg) !important;
+    border-color: var(--create-chat-button-bg) !important;
+    color: var(--button-text-color) !important;
+    border-radius: 12px !important;
+}
+
+.createBtn:hover {
+    background-color: var(--create-chat-button-hover-bg) !important;
+    border-color: var(--create-chat-button-hover-bg) !important;
+}
+
+.table {
+    flex: 1;
+    min-height: 0;
+    overflow-x: auto; 
+    overflow-y: hidden;
+    background-color: var(--bg-secondary);
+    border-radius: 12px;
+}
+
+.table :global(.ant-table) {
+    background-color: transparent !important;
+    color: var(--text-color) !important;
+}
+
+.table :global(.ant-table-thead > tr > th) {
+    background-color: var(--bg-siderbar) !important;
+    color: var(--text-color) !important;
+    border-bottom: 1px solid var(--border-color) !important;
+    padding: 8px 12px !important;
+    font-size: 13px !important;
+}
+
+.table :global(.ant-table-tbody > tr > td) {
+    border-bottom: 1px solid var(--border-color) !important;
+    color: var(--text-color) !important;
+    padding: 6px 12px !important;
+    font-size: 13px !important;
+}
+
+.table :global(.ant-table-tbody > tr:hover > td) {
+    background-color: var(--bg-color) !important;
+}
+.tableWrapper {
+    margin: 0 auto;    
+}
+.actions {
+    display: flex;
+    gap: 4px;
+    justify-content: center;
+}
+
+.actionBtn {
+    color: var(--text-secondary) !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 2px 4px !important;
+}
+
+.actionBtn:hover {
+    color: var(--text-color) !important;
+    background-color: var(--bg-color) !important;
+}
+
+.roleBadge {
+    padding: 1px 6px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    
+}
+
+.roleBadge.admin {
+    background-color: var(--user-message-bg);
+    color: rgb(245, 245, 255);
+}
+
+.roleBadge.user {
+    background-color: var(--assistant-message-bg);
+    color: var(--text-color);
+}
+.paginationWrapper {
+    display: flex;
+    justify-content: right;
+    padding: 4px 0;
+    flex-shrink: 0;
+}
+
+
+.pagination :global(.ant-pagination) {
+    display: flex !important;
+    align-items: center !important;
+}
+
+.pagination :global(.ant-pagination-item a) {
+    color: var(--text-color) !important;
+}
+
+
+
+.pagination :global(.ant-pagination-item-active) {
+    background-color: var(--primary-button-bg) !important;
+    border-color: var(--primary-button-bg) !important;
+}
+
+.pagination :global(.ant-pagination-item-active a) {
+    color: var(--button-text-color) !important;
+}
+
+.pagination :global(.ant-pagination-prev),
+.pagination :global(.ant-pagination-next) {
+    min-width: 28px !important;
+    height: 28px !important;
+    line-height: 26px !important;
+}
+
+.pagination :global(.ant-pagination-prev button:hover),
+.pagination :global(.ant-pagination-next button:hover) {
+    color: var(--primary-button-hover-bg) !important;
+    border-color: var(--primary-button-hover-bg) !important;
+}
+
+.pagination :global(.ant-pagination-disabled button) {
+    color: var(--text-secondary) !important;
+    opacity: 0.5 !important;
+    cursor: not-allowed !important;
+}
+
+.pagination :global(.ant-pagination-options) {
+    margin-left: 8px !important;
+}
+
+
+.modal :global(.ant-modal-container) {
+    background-color: var(--bg-secondary) !important;
+}
+.modal :global(.ant-modal-header) {
+    margin-bottom: 20px !important;
+}
+
+.modal :global(.ant-form-item) {
+    margin-bottom: 12px !important;
+} 
+.modal :global(.ant-modal-header) {
+    border-bottom: 1px solid var(--border-color) !important;
+}
+
+.modal :global(.ant-modal-title) {
+    color: var(--text-color) !important;
+}
+
+
+
+.modal :global(.ant-modal-close) {
+    color: var(--text-secondary) !important;
+}
+
+.modal :global(.ant-modal-close):hover {
+    color: var(--text-color) !important;
+    background-color: var(--bg-color) !important;
+}
+
+.modal :global(.ant-form-item-label > label) {
+    color: var(--text-color) !important;
+}
+
+.modal :global(.ant-btn-primary) {
+    background-color: var(--primary-button-bg) !important;
+}
+
+.modal :global(.ant-btn-primary):hover {
+    background-color: var(--primary-button-hover-bg) !important;
+    border-color: var(--primary-button-hover-bg) !important;
+}
+
+.modal :global(.ant-btn-default) {
+    background-color: var(--bg-color) !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-color) !important;
+}
+
+.modal :global(.ant-btn-default):hover {
+    border-color: var(--primary-button-bg) !important;
+}
+
+.tabs :global(.ant-tabs-tab) {
+    color: var(--text-secondary) !important;
+    background-color: var(--bg-color) !important;
+    border-color: var(--border-color) !important;
+}
+
+.tabs :global(.ant-tabs-tab-active) {
+    color: var(--text-color) !important;
+    background-color: var(--bg-secondary) !important;
+    border-color: var(--primary-button-bg) !important;
+}
+
+.tabs :global(.ant-tabs-tab-btn) {
+    color: inherit !important;
+}
+
+
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.statCard {
+    background-color: var(--bg-secondary);
+    border-radius: 12px;
+}
+
+.statCard :global(.ant-card-body) {
+    padding: 16px !important;
+}
+
+.statCard :global(.ant-statistic-title) {
+    color: var(--text-secondary) !important;
+    font-size: 13px !important;
+}
+
+.statCard :global(.ant-statistic-content) {
+    color: var(--text-color) !important;
+    font-size: 24px !important;
+}
+
+.chartsGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+.chartCard {
+    background-color: var(--bg-secondary) !important;
+    border-radius: 12px;
+}
+
+.chartCard :global(.ant-card-head) {
+    border-bottom: 1px solid var(--border-color) !important;
+    padding: 12px 16px !important;
+    min-height: auto !important;
+}
+
+.chartCard :global(.ant-card-head-title) {
+    color: var(--text-color) !important;
+    font-size: 14px !important;
+}
+
+.chartCard :global(.ant-card-body) {
+    padding: 12px 16px !important;
+}
+
+.empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: var(--text-secondary);
+}
+
+
+@media (max-width: 800px) {
+    .statsGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .statsGrid {
+        grid-template-columns: 1fr;
+    }
+    .container {
+        padding: 8px;
+    }
+}
+
+.pagination :global(.ant-select-dropdown) {
+    background-color: var(--bg-secondary) !important;
+    border: 1px solid var(--border-color) !important;
+}
+
+.modal :global(.ant-input),
+.modal :global(.ant-input-password) {
+    background-color: var(--bg-color) !important;
+    color: var(--text-color) !important;
+    border-color: var(--border-color) !important;
+}
+
+.modal :global(.ant-input:hover),
+.modal :global(.ant-input-password:hover),
+.modal :global(.ant-input:focus),
+.modal :global(.ant-input-password:focus) {
+    border-color: var(--primary-button-hover-bg) !important;
+}
+
+.modal :global(.ant-input::placeholder),
+.modal :global(.ant-input-password input::placeholder) {
+    color: var(--text-secondary) !important;
+}
+
+:global(.ant-select-dropdown) {
+    background-color: var(--bg-secondary) !important;
+    border: 1px solid var(--border-color) !important;
+}
+
+:global(.ant-select-item) {
+    color: var(--text-color) !important;
+    background-color: var(--bg-secondary) !important;
+}
+
+:global(.ant-select-item-option-selected) {
+    background-color: var(--primary-button-bg) !important;
+    color: var(--button-text-color) !important;
+}
+
+:global(.ant-select-item-option-active) {
+    background-color: var(--bg-color) !important;
+    color: var(--text-color) !important;
+}
+
+.pagination :global(.ant-select-selector) {
+    background-color: var(--bg-secondary) !important;
+    color: var(--text-color) !important;
+    border-color: var(--border-color) !important;
+}
+
+.pagination :global(.ant-select-selection-item) {
+    color: var(--text-color) !important;
+}
+.modal :global(.ant-input-affix-wrapper-focused),
+.modal :global(.ant-select-focused .ant-select-selector) {
+    border-color: var(--primary-button-bg) !important;
+    box-shadow: 0 0 0 2px rgba(102, 102, 102, 0.2) !important;
+}
+
+body.dark .modal :global(.ant-input-affix-wrapper-focused),
+body.dark .modal :global(.ant-select-focused .ant-select-selector) {
+    box-shadow: 0 0 0 2px rgba(35, 30, 78, 0.4) !important;
+}
+
+.pagination :global(.ant-select-selector) {
+    background-color: var(--bg-secondary) !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-color) !important;
+    border-radius: 4px !important;
+    font-size: 13px !important;
+    height: 28px !important;
+    line-height: 26px !important;
+}
+
+.pagination :global(.ant-select-arrow) {
+    color: var(--text-secondary) !important;
+}
+.pagination :global(.ant-pagination) {
+    display: flex !important;
+    align-items: center !important;
+    background-color: var(--bg-secondary) !important;
+    padding: 8px 16px !important;
+    border-radius: 8px !important;
+    margin: 16px 0 !important;
+}
+.pagination :global(.ant-pagination-item) {
+    background-color: var(--bg-color) !important;
+    border: 1px solid var(--border-color) !important;
+}
+
+.pagination :global(.ant-pagination-item-active) {
+    background-color: var(--primary-button-bg) !important;
+    border-color: var(--primary-button-bg) !important;
+    color: var(--button-text-color) !important;
+}
+.pagination :global(.ant-pagination-item-active :hover) {
+    background-color: var(--primary-button-bg) !important;
+    border-color: var(--primary-button-bg) !important;
+    color: var(--button-text-color) !important;
+}
+
+
+
+

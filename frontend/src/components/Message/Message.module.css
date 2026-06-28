@@ -73,3 +73,28 @@
 .message:hover .copyButton {
     opacity: 1;
 }
+
+.streamingDot {
+    display: inline-block;
+    margin-left: 8px;
+    width: 4px;           /* Уменьшено с 8px до 4px */
+    height: 4px;          /* Уменьшено с 8px до 4px */
+    border-radius: 50%;
+    background-color: #1890ff;
+    animation: blink 1.5s infinite;
+    vertical-align: middle;
+    box-shadow: 0 0 8px 2px rgba(24, 144, 255, 0.6); /* Добавлено свечение */
+    /* Уменьшено свечение для более мягкого эффекта */
+}
+
+@keyframes blink {
+    0%, 50%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    25% {
+        opacity: 0.5;
+        transform: scale(0.8);
+    }
+}
+

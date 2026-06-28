@@ -10,7 +10,11 @@ export default function MessageList({ messages, loading, isTyping }) {
     useEffect(() => {
         bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
     }, [messages, loading]);
-
+    useEffect(() => {
+        if (isTyping) {
+            bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, [isTyping]);
     const groupedMessages = [];
     let lastDate = null;
 
@@ -37,10 +41,13 @@ export default function MessageList({ messages, loading, isTyping }) {
                 return (
                     <Message
                         key={item.id}
+                        message={item}
                         role={item.role}
                         content={item.content}
                         createdAt={item.created_at}
+                        isLastStreaming={item.isLastStreaming}
                     />
+
                 );
             })}
 
@@ -50,6 +57,7 @@ export default function MessageList({ messages, loading, isTyping }) {
                     <span className={styles.dot}></span>
                     <span className={styles.dot}></span>
                 </div>
+                
             )}
             
             <div ref={bottomRef} />

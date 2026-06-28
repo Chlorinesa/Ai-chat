@@ -90,4 +90,23 @@ class ChatRepository extends BaseRepository
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([':id' => $chatId]);
     }
+    //админ
+
+    public function getTotalChats()
+    {
+        $sql = "SELECT COUNT(*) FROM chats";
+        $stmt = $this->pdo->query($sql);
+        return $stmt->fetchColumn();
+    }
+
+    public function getChatsCountByUser()
+    {
+        $sql = "SELECT u.username, COUNT(c.id) as count 
+                FROM users u 
+                LEFT JOIN chats c ON c.user_id = u.id 
+                GROUP BY u.id, u.username 
+                ORDER BY count DESC";
+        $stmt = $this->pdo->query($sql);
+        return $stmt->fetchAll();
+    }
 }

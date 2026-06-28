@@ -10,7 +10,6 @@ class JWTService
 
     public function __construct()
     {
-        // $secret  = getenv('JWT_SECRET');
         $secret  = "qmHdddpbtZ7ZTRztnfUDt8sP0rTpdGr6HwS93cmoLTQtoKqcdQAiw15MBKeU4YzJp9uJ6RwXldekY2K5FbPviAii";
         if ($secret === '' || $secret === false) {
             throw new \RuntimeException('JWT_SECRET is not set in .env');
@@ -18,12 +17,13 @@ class JWTService
         $this->secretKey = $secret;
     }
 
-    public function encode($userId, $username)
+    public function encode($userId, $username, $role = 'user')
     {
         $payload = [
             'user_id' => $userId,
             'username' => $username,
-            'exp' => time() + 86400 //24 часа
+            'role' => $role,
+            'exp' => time() + 86400
         ];
         return JWT::encode($payload, $this->secretKey, 'HS256');
     }
@@ -40,6 +40,24 @@ class JWTService
 
     public function getUserIdFromToken()
     {
+        $decoded = $this->getDecodedToken();
+        if (!$decoded || !isset($decoded['user_id'])) {
+            throw new Exception('Invalid token', 401);
+        }
+        return $decoded['user_id'];
+    }
+
+    public function getUserRoleFromToken()
+    {
+        $decoded = $this->getDecodedToken();
+        if (!$decoded || !isset($decoded['role'])) {
+            throw new Exception('Invalid token', 401);
+        }
+        return $decoded['role'];
+    }
+
+    private function getDecodedToken()
+    {
         $headers = getallheaders();
         $headers = array_change_key_case($headers, CASE_LOWER);
         $authHeader = $headers['authorization'] ?? '';
@@ -48,13 +66,6 @@ class JWTService
             throw new Exception('Token required', 401);
         }
 
-        $token = $matches[1];
-        $decoded = $this->decode($token);
-
-        if (!$decoded || !isset($decoded['user_id'])) {
-            throw new Exception('Invalid token', 401);
-        }
-
-        return $decoded['user_id'];
+        return $this->decode($matches[1]);
     }
 }

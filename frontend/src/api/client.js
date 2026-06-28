@@ -23,7 +23,11 @@ export async function client(endpoint, options = {}) {
         if (!response.ok) {
             if (response.status === 401) {
                 localStorage.removeItem('token');
+                localStorage.removeItem('user');
                 window.location.href = '/login';
+            }
+            if (response.status === 403) {
+                window.location.href = '/chat';
             }
             throw new Error(`HTTP error. status: ${response.status}`);
         }

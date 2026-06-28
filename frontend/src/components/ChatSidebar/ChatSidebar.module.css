@@ -17,6 +17,10 @@
     box-shadow:  4px 0 12px rgba(0, 0, 0, 0.15);
 }
 
+:global(.ant-layout-sider){
+    z-index: 11 !important;
+}
+
 .logoWrapper {
     display: flex;
     align-items: center;

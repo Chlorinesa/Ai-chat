@@ -1,35 +1,86 @@
-frontend/node_modules/
-frontend/dist/
-frontend/dist-ssr/
-frontend/.vite/
-frontend/.env
-frontend/.env.local
-frontend/.env.*.local
-frontend/*.local
-frontend/.cache/
-
-backend/vendor/
-backend/composer.phar
-backend/logs/
-backend/.env
-backend/.env.local
-backend/.env.*.local
-backend/*.log
-backend/.phpunit.cache/
-backend/.cache/
-
+# ==========================================
+# ОБЩИЕ СИСТЕМНЫЕ ФАЙЛЫ
+# ==========================================
 .DS_Store
 Thumbs.db
+desktop.ini
+
+# ==========================================
+# ОБЩИЕ ФАЙЛЫ ОКРУЖЕНИЯ
+# ==========================================
+.env
+.env.local
+.env.*.local
+*.local
+
+# ==========================================
+# ОБЩИЕ ЛОГИ
+# ==========================================
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ==========================================
+# ОБЩИЕ ВРЕМЕННЫЕ ФАЙЛЫ
+# ==========================================
 *.tmp
 *.temp
-*.log
+*.cache
+.cache/
+.cache.php
 
-# IDE
-.vscode/
+# ==========================================
+# IDE И РЕДАКТОРЫ
+# ==========================================
+.vscode/*
+!.vscode/extensions.json
 .idea/
+*.swp
+*.swo
+*~
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
-*.swp
+
+# ==========================================
+# СПЕЦИФИЧНОЕ ДЛЯ OPENPANEL
+# ==========================================
+.osp/
+.htaccess
+*.conf
+*.pid
+
+# ==========================================
+# ПРАВИЛА ДЛЯ ФРОНТЕНДА
+# ==========================================
+frontend/node_modules/
+frontend/dist/
+frontend/dist-ssr/
+frontend/.vite/
+frontend/.cache/
+frontend/.parcel-cache/
+
+# ==========================================
+# ПРАВИЛА ДЛЯ БЕКЕНДА
+# ==========================================
+backend/vendor/
+backend/composer.phar
+backend/cache/
+backend/twig-cache/
+backend/.phpunit.cache/
+backend/.phpunit.result.cache
+backend/coverage/
+backend/*.xml
+backend/*.xdebug
+backend/*.prof
+backend/*.tar
+backend/*.gz
+backend/*.zip
+backend/config/local.php
+backend/config/secrets.php

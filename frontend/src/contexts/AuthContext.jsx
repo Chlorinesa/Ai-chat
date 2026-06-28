@@ -18,10 +18,12 @@ export const AuthProvider = ({ children }) => {
         setLoading(true);
         try {
             const response = await apiLogin(username, password);
-            if (response.token) {
+            
+            if (response?.token) {
                 setToken(response.token);
                 localStorage.setItem('token', response.token);
-                const userData = { username };
+                
+                const userData = response.user || { username, role: 'user' };
                 setUser(userData);
                 localStorage.setItem('user', JSON.stringify(userData));
             }
@@ -50,13 +52,15 @@ export const AuthProvider = ({ children }) => {
     const logout = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
-        localStorage.removeItem('activeChatId')
+        localStorage.removeItem('activeChatId');
         setToken(null);
         setUser(null);
     };
 
+    const isAdmin = user?.role === 'admin';
+
     return (
-        <AuthContext.Provider value={{ token, user, login, register, logout, loading }}>
+        <AuthContext.Provider value={{ token, user, isAdmin, login, register, logout, loading }}>
             {children}
         </AuthContext.Provider>
     );

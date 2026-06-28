@@ -5,7 +5,7 @@ import styles from './Message.module.css';
 import { formatTime } from '../../utils/date';
 import MarkdownRenderer from './MarkdownRenderer';
 
-export default function Message({ role, content, createdAt }) {
+export default function Message({ role, content, createdAt, isLastStreaming }) {
     const [copied, setCopied] = useState(false);
 
     const handleCopy = async () => {
@@ -13,8 +13,8 @@ export default function Message({ role, content, createdAt }) {
             await navigator.clipboard.writeText(content);
             setCopied(true);
             setTimeout(() => setCopied(false), 2000);
-        } catch (err) {
-            console.error('Copy failed:', err);
+        } catch (error) {
+            console.error('Copy failed:', error);
         }
     };
 
@@ -32,7 +32,12 @@ export default function Message({ role, content, createdAt }) {
                     <pre className={styles.userPre}>{content}</pre>
                 )}
             </div>
-            <div className={styles.timestamp}>{formatTime(createdAt)}</div>
+            <div className={styles.timestamp}>
+                {formatTime(createdAt)}
+                {isLastStreaming && (
+                    <span className={styles.streamingDot}></span>
+                )}
+            </div>
             <Tooltip 
                 title={copied ? 'Скопировано!' : 'Копировать сообщение'}
                 color="var(--bg-secondary)"
@@ -48,4 +53,5 @@ export default function Message({ role, content, createdAt }) {
             </Tooltip>
         </div>
     );
+    
 }

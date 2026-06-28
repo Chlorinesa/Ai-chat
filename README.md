@@ -41,7 +41,6 @@
 ## Установка и запуск
 
 ### Предварительные требования
-
 - Node.js 16+ и npm
 - PHP 8.0+
 - PostgreSQL 13+
@@ -56,36 +55,22 @@ git clone https://github.com/Chlorinesa/Ai-chat.git
 cd Ai-chat
 ```
 
-### 2. Настройка базы данных
-
-Создайте базу данных в PostgreSQL:
-
-```sql
-CREATE DATABASE chat_db;
-```
-
-Выполните скрипт создания таблиц:
-
-```bash
-psql -U postgres -d chat_db -f backend/database/script.sql
-```
-
-### 3. Настройка бэкенда
+### 2. Настройка бэкенда
 
 ```bash
 cd backend
 cp .env.example .env
 ```
 
-Отредактируйте файл .env:
+Отредактируйте файл `.env`:
 
 ```env
 DB_HOST=localhost
 DB_PORT=5432
 DB_NAME=chat_db
 DB_USER=postgres
-DB_PASSWORD=your_password_here
-JWT_SECRET=your-secret-key-change-it
+DB_PASSWORD=your_password
+JWT_SECRET=your-secret-key
 ```
 
 Установите зависимости:
@@ -94,44 +79,37 @@ JWT_SECRET=your-secret-key-change-it
 composer install
 ```
 
-### 4. Настройка фронтенда
+Создайте базу данных и выполните скрипт:
+
+```sql
+CREATE DATABASE chat_db;
+```
+
+```bash
+psql -U postgres -d chat_db -f backend/database/script.sql
+```
+
+Запустите бэкенд через Open Server Panel (Apache + PostgreSQL).
+
+### 3. Настройка фронтенда
 
 ```bash
 cd ../frontend
 npm install
-```
-
-### 5. Запуск LM Studio
-
-1. Скачайте и установите LM Studio
-2. Загрузите модель (рекомендуется gemma-3)
-3. Запустите локальный сервер на порту 1234
-
-### 6. Запуск приложения
-
-**Бэкенд (Open Server Panel):**
-- Запустите Apache и PostgreSQL
-- Настройте домен на папку backend
-
-**Фронтенд:**
-
-```bash
 npm run dev
 ```
 
 Приложение доступно: http://localhost:5173
 
-**Сборка для продакшена:**
+### 4. Запуск LM Studio
 
-```bash
-npm run build
-```
-
-Файлы из `frontend/dist` скопируйте в `backend/public`
+1. Установите LM Studio
+2. Загрузите модель (рекомендуется gemma-3)
+3. Запустите локальный сервер на порту 1234
 
 ## Настройка подключения к бэкенду
 
-Если бэкенд работает не на http://chat-backend.local, отредактируйте `frontend/src/constants/api.js`:
+Если бэкенд работает не на `http://chat-backend.local`, отредактируйте `frontend/src/constants/api.js`:
 
 ```javascript
 export const API_BASE_URL = 'http://ваш-домен.local';

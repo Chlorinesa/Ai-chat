@@ -26,6 +26,10 @@
 
 – Анимация печатания (typing indicator) во время генерации
 
+<img width="1843" height="1020" alt="image" src="https://github.com/user-attachments/assets/0389dd4b-77b1-4043-b51b-9c5044b71176" />
+
+<img width="1888" height="1020" alt="image" src="https://github.com/user-attachments/assets/2b3b0aed-5def-407c-ad58-bd1c071a23d0" />
+
 ### Административная панель (только для админов)
 
 – Управление пользователями:
@@ -51,6 +55,10 @@
   – Топ–5 пользователей по количеству сообщений
 
 – Переключение темы прямо из админ–панели
+
+<img width="1414" height="624" alt="image" src="https://github.com/user-attachments/assets/90f4aa3c-70e7-4d30-835b-bcaf54a0f151" />
+<img width="1894" height="1025" alt="image" src="https://github.com/user-attachments/assets/f2553408-bd72-4d48-8201-c5d5727e47be" />
+
 
 ## Технологии
 
